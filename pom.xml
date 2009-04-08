@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.yestech</groupId>
     <artifactId>yestest</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>YES Test</name>
     <url>http://yestech.org</url>
     <dependencies>
