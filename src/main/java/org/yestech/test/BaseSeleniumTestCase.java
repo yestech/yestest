@@ -3,6 +3,7 @@ package org.yestech.test;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
 import org.junit.Before;
+import org.junit.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +45,13 @@ public class BaseSeleniumTestCase
         String defaultBrowser = getConfigProperty(PROPERTY_BROWSER, DEFAULT_BROWSER);
         String url = getConfigProperty(PROPERTY_URL, DEFAULT_SELENIUM_URL);
         selenium = new DefaultSelenium(server, port, defaultBrowser, url);
+        selenium.start();
+    }
+
+    @After
+    public void tearDown()
+    {
+        selenium.stop();
     }
 
     protected Selenium getSelenium()
