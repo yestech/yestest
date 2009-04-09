@@ -2,6 +2,7 @@ package org.yestech.test;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
+import com.thoughtworks.selenium.SeleneseTestBase;
 import org.junit.Before;
 import org.junit.After;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
  *
  *
  */
-public class BaseSeleniumTestCase
+public abstract class BaseSeleniumTestCase extends SeleneseTestBase
 {
 
     private static final Logger log = LoggerFactory.getLogger(BaseSeleniumTestCase.class);
@@ -46,12 +47,13 @@ public class BaseSeleniumTestCase
         String url = getConfigProperty(PROPERTY_URL, DEFAULT_SELENIUM_URL);
         selenium = new DefaultSelenium(server, port, defaultBrowser, url);
         selenium.start();
+        setCaptureScreenShotOnFailure(true);
     }
 
     @After
-    public void tearDown()
+    public void tearDown() throws Exception
     {
-        selenium.stop();
+        super.tearDown();
     }
 
     protected Selenium getSelenium()
