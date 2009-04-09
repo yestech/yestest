@@ -47,13 +47,41 @@ public abstract class BaseSeleniumTestCase extends SeleneseTestBase
         String url = getConfigProperty(PROPERTY_URL, DEFAULT_SELENIUM_URL);
         selenium = new DefaultSelenium(server, port, defaultBrowser, url);
         selenium.start();
-        setCaptureScreenShotOnFailure(true);
     }
 
     @After
     public void tearDown() throws Exception
     {
-        super.tearDown();
+        try
+        {
+            checkForVerificationErrors();
+        }
+        catch (AssertionError ae)
+        {
+            if (selenium != null)
+            {
+                String testImage = getClass().getSimpleName() + "-" + System.currentTimeMillis() + ".jpg";
+                selenium.captureScreenshot(testImage);
+                throw new AssertionError(ae.getMessage() + " see: "+testImage);
+            }
+            
+        }
+        catch (Exception e) {
+            if (selenium != null)
+            {
+                String testImage = getClass().getSimpleName() + "-" + System.currentTimeMillis() + ".jpg";
+                selenium.captureScreenshot(testImage);
+                throw new Exception(e.getMessage() + " see: "+testImage, e);
+            }
+            throw e;
+        }
+        {
+            if (selenium != null)
+            {
+                selenium.stop();
+                selenium = null;
+            }
+        }
     }
 
     protected Selenium getSelenium()
@@ -61,7 +89,8 @@ public abstract class BaseSeleniumTestCase extends SeleneseTestBase
         return selenium;
     }
 
-    public ResourceBundle getResourceBundle() {
+    public ResourceBundle getResourceBundle()
+    {
         try
         {
             return PropertyResourceBundle.getBundle("selenium");
@@ -80,8 +109,8 @@ public abstract class BaseSeleniumTestCase extends SeleneseTestBase
         if (properties != null)
         {
             try
-        {
-            value =  properties.getString(key);
+            {
+                value = properties.getString(key);
             }
             catch (RuntimeException e)
             {
@@ -92,7 +121,8 @@ public abstract class BaseSeleniumTestCase extends SeleneseTestBase
                 // ignore
             }
         }
-        if (value == null) {
+        if (value == null)
+        {
             value = defaultVal;
         }
         return value;
