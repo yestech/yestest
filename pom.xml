@@ -17,8 +17,8 @@
     </organization>
     <licenses>
         <license>
-            <name>GPL</name>
-            <url>http://opensource.org/licenses/gpl-license.php</url>
+            <name>LGPLv3</name>
+            <url>http://opensource.org/licenses/lgpl-3.0.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.5</version>
+            <version>4.7</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
