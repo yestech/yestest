@@ -4,9 +4,43 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.yestech</groupId>
     <artifactId>yestest</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.1-SNAPSHOT</version>
     <name>YES Test</name>
     <url>http://yestech.org</url>
+    <scm>
+        <connection>scm:git:http://github.com/yestech/yestest/tree/master</connection>
+        <developerConnection>scm:git:http://github.com/yestech/yestest/tree/master</developerConnection>
+    </scm>
+    <organization>
+        <name>YES Technology Association</name>
+        <url>http://yestech.org</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>GPL</name>
+            <url>http://opensource.org/licenses/gpl-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>artie</id>
+            <name>Artie Copeland</name>
+            <email>artie@yestech.org</email>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>aj</id>
+            <name>AJ Wright</name>
+            <email>ayax79@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
     <dependencies>
         <dependency>
             <groupId>org.openqa.selenium.core</groupId>
@@ -91,6 +125,20 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.0-alpha-4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -100,17 +148,28 @@
             <id>openqa.releases</id>
             <url>http://nexus.openqa.org/content/repositories/releases</url>
         </repository>
+        <repository>
+            <id>yestech-snapshots</id>
+            <name>YES Technology Snapshot Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/github-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
     <distributionManagement>
         <repository>
-            <id>yestech.release</id>
-            <name>Yestech release repository</name>
-            <url>http://repo.yestech.org/content/repositories/releases</url>
+            <id>yestech-releases</id>
+            <name>YES Technology Release Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/github-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>yestech.snapshots</id>
-            <name>Yestech snapshots repository</name>
-            <url>http://repo.yestech.org/content/repositories/snapshots</url>
+            <id>yestech-snapshots</id>
+            <name>YES Technology Snapshot Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/github-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
