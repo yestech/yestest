@@ -83,10 +83,4 @@
             </exclusions>
         </dependency>
     </dependencies>
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>openqa.releases</id>-->
-            <!--<url>http://nexus.openqa.org/content/repositories/releases</url>-->
-        <!--</repository>-->
-    <!--</repositories>-->
 </project>
